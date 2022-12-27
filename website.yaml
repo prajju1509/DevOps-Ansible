@@ -1,0 +1,24 @@
+- name: install apche
+  hosts: linux
+  become: true
+  tasks:
+    - name: install package on linux
+      yum:
+        name: httpd
+        state: present
+    - name: start
+      service:
+        name: httpd
+        state: start
+- name: apache on ubuntu
+  hosts: ubuntu
+  become: true
+  tasks:
+    - name: install package apache
+      apt:
+        name: apache2
+        state: present
+    - name: start
+      apt:
+        name: apache2
+        state: :start
