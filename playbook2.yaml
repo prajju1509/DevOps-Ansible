@@ -47,25 +47,25 @@
 #create database on db
     - name: create database on mariadb
       mysql_db:
-        name: ecomdb
+        name: db1
         state: present
 #create user and password on udb
     - name: create application user
       mysql_user:
-        name: ecomuser
-        password: ecompassword
+        name: admin
+        password: admin
         priv: '*.*:ALL,GRANT'
         host: 172.31.46.51
         state: present
 #add tables and producst on ecomdb
     - name: create directory
-      shell: mkdir -p /ashiq
+      shell: mkdir -p /prajju
     - name: add db
       git:
-        repo: https://github.com/mohammedashiqu/app-ecommerce_project.git
-        dest: /ashiq
+        repo: https://github.com/prajju1509/app-ecommerce-sql
+        dest: /prajju
     - name: addtable
-      shell: mysql -f < /ashiq/assets/db-load-script.sql
+      shell: mysql -f < /prajju/assets/db-load-script.sql
 #restart webserver and edit index file
 - hosts: web
   name: restart web
